@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6150f2dcd3094034b2e18a94922b16ff" Name="Diagram1">
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Animals" Width="1.5" PointX="6" PointY="4.125" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Feeds" Width="1.5" PointX="3.75" PointY="7.5" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Gender" Width="1.5" PointX="1.5" PointY="12.875" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Habitats" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Habitats_Staff" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Position" Width="1.5" PointX="1.5" PointY="15.5" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Species" Width="1.5" PointX="3.75" PointY="10" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Staff" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Zoo_Sanin_PolupanModel.Time_Feeds" Width="1.5" PointX="3" PointY="4.625" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Animals_Feeds" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Animals_Gender" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Animals_Habitats" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Animals_Species" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Feeds" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Staff_Gender" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Habitats" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Habitats" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Staff" />
+        <AssociationConnector Association="Zoo_Sanin_PolupanModel.FK_Staff_Position" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

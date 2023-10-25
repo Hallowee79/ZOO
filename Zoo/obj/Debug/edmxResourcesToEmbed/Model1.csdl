@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Zoo_Sanin_PolupanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Zoo_Sanin_PolupanModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Zoo_Sanin_PolupanModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Animals" EntityType="Zoo_Sanin_PolupanModel.Animals" />
+    <EntitySet Name="Feeds" EntityType="Zoo_Sanin_PolupanModel.Feeds" />
+    <EntitySet Name="Gender" EntityType="Zoo_Sanin_PolupanModel.Gender" />
+    <EntitySet Name="Habitats" EntityType="Zoo_Sanin_PolupanModel.Habitats" />
+    <EntitySet Name="Habitats_Staff" EntityType="Zoo_Sanin_PolupanModel.Habitats_Staff" />
+    <EntitySet Name="Position" EntityType="Zoo_Sanin_PolupanModel.Position" />
+    <EntitySet Name="Species" EntityType="Zoo_Sanin_PolupanModel.Species" />
+    <EntitySet Name="Staff" EntityType="Zoo_Sanin_PolupanModel.Staff" />
+    <EntitySet Name="sysdiagrams" EntityType="Zoo_Sanin_PolupanModel.sysdiagrams" />
+    <EntitySet Name="Time_Feeds" EntityType="Zoo_Sanin_PolupanModel.Time_Feeds" />
+    <AssociationSet Name="FK_Animals_Feeds" Association="Zoo_Sanin_PolupanModel.FK_Animals_Feeds">
+      <End Role="Feeds" EntitySet="Feeds" />
+      <End Role="Animals" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animals_Gender" Association="Zoo_Sanin_PolupanModel.FK_Animals_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Animals" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animals_Habitats" Association="Zoo_Sanin_PolupanModel.FK_Animals_Habitats">
+      <End Role="Habitats" EntitySet="Habitats" />
+      <End Role="Animals" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animals_Species" Association="Zoo_Sanin_PolupanModel.FK_Animals_Species">
+      <End Role="Species" EntitySet="Species" />
+      <End Role="Animals" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_Feeds_Feeds" Association="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Feeds">
+      <End Role="Feeds" EntitySet="Feeds" />
+      <End Role="Time_Feeds" EntitySet="Time_Feeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Gender" Association="Zoo_Sanin_PolupanModel.FK_Staff_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitats_Staff_Habitats" Association="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Habitats">
+      <End Role="Habitats" EntitySet="Habitats" />
+      <End Role="Habitats_Staff" EntitySet="Habitats_Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Time_Feeds_Habitats" Association="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Habitats">
+      <End Role="Habitats" EntitySet="Habitats" />
+      <End Role="Time_Feeds" EntitySet="Time_Feeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitats_Staff_Staff" Association="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Habitats_Staff" EntitySet="Habitats_Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Position" Association="Zoo_Sanin_PolupanModel.FK_Staff_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Animals">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpiciesID" Type="Int32" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="GenderID" Type="Int32" Nullable="false" />
+    <Property Name="HabitatID" Type="Int32" Nullable="false" />
+    <Property Name="FeedsID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Feeds" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Feeds" FromRole="Animals" ToRole="Feeds" />
+    <NavigationProperty Name="Gender" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Gender" FromRole="Animals" ToRole="Gender" />
+    <NavigationProperty Name="Habitats" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Habitats" FromRole="Animals" ToRole="Habitats" />
+    <NavigationProperty Name="Species" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Species" FromRole="Animals" ToRole="Species" />
+  </EntityType>
+  <EntityType Name="Feeds">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animals" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Feeds" FromRole="Feeds" ToRole="Animals" />
+    <NavigationProperty Name="Time_Feeds" Relationship="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Feeds" FromRole="Feeds" ToRole="Time_Feeds" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animals" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Gender" FromRole="Gender" ToRole="Animals" />
+    <NavigationProperty Name="Staff" Relationship="Zoo_Sanin_PolupanModel.FK_Staff_Gender" FromRole="Gender" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Habitats">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animals" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Habitats" FromRole="Habitats" ToRole="Animals" />
+    <NavigationProperty Name="Habitats_Staff" Relationship="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Habitats" FromRole="Habitats" ToRole="Habitats_Staff" />
+    <NavigationProperty Name="Time_Feeds" Relationship="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Habitats" FromRole="Habitats" ToRole="Time_Feeds" />
+  </EntityType>
+  <EntityType Name="Habitats_Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HabitatsID" Type="Int32" Nullable="false" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Habitats" Relationship="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Habitats" FromRole="Habitats_Staff" ToRole="Habitats" />
+    <NavigationProperty Name="Staff" Relationship="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Staff" FromRole="Habitats_Staff" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Staff" Relationship="Zoo_Sanin_PolupanModel.FK_Staff_Position" FromRole="Position" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Species">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animals" Relationship="Zoo_Sanin_PolupanModel.FK_Animals_Species" FromRole="Species" ToRole="Animals" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PositionID" Type="Int32" Nullable="false" />
+    <Property Name="GenderID" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Gender" Relationship="Zoo_Sanin_PolupanModel.FK_Staff_Gender" FromRole="Staff" ToRole="Gender" />
+    <NavigationProperty Name="Habitats_Staff" Relationship="Zoo_Sanin_PolupanModel.FK_Habitats_Staff_Staff" FromRole="Staff" ToRole="Habitats_Staff" />
+    <NavigationProperty Name="Position" Relationship="Zoo_Sanin_PolupanModel.FK_Staff_Position" FromRole="Staff" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Time_Feeds">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="FeedID" Type="Int32" Nullable="false" />
+    <Property Name="HabitatsID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Feeds" Relationship="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Feeds" FromRole="Time_Feeds" ToRole="Feeds" />
+    <NavigationProperty Name="Habitats" Relationship="Zoo_Sanin_PolupanModel.FK_Time_Feeds_Habitats" FromRole="Time_Feeds" ToRole="Habitats" />
+  </EntityType>
+  <Association Name="FK_Animals_Feeds">
+    <End Type="Zoo_Sanin_PolupanModel.Feeds" Role="Feeds" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Animals" Role="Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feeds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Animals">
+        <PropertyRef Name="FeedsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animals_Gender">
+    <End Type="Zoo_Sanin_PolupanModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Animals" Role="Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Animals">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animals_Habitats">
+    <End Type="Zoo_Sanin_PolupanModel.Habitats" Role="Habitats" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Animals" Role="Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitats">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Animals">
+        <PropertyRef Name="HabitatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animals_Species">
+    <End Type="Zoo_Sanin_PolupanModel.Species" Role="Species" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Animals" Role="Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Species">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Animals">
+        <PropertyRef Name="SpiciesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_Feeds_Feeds">
+    <End Type="Zoo_Sanin_PolupanModel.Feeds" Role="Feeds" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Time_Feeds" Role="Time_Feeds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feeds">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Time_Feeds">
+        <PropertyRef Name="FeedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Gender">
+    <End Type="Zoo_Sanin_PolupanModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Staff" Role="Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitats_Staff_Habitats">
+    <End Type="Zoo_Sanin_PolupanModel.Habitats" Role="Habitats" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Habitats_Staff" Role="Habitats_Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitats">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Habitats_Staff">
+        <PropertyRef Name="HabitatsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Time_Feeds_Habitats">
+    <End Type="Zoo_Sanin_PolupanModel.Habitats" Role="Habitats" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Time_Feeds" Role="Time_Feeds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitats">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Time_Feeds">
+        <PropertyRef Name="FeedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitats_Staff_Staff">
+    <End Type="Zoo_Sanin_PolupanModel.Staff" Role="Staff" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Habitats_Staff" Role="Habitats_Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Habitats_Staff">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Position">
+    <End Type="Zoo_Sanin_PolupanModel.Position" Role="Position" Multiplicity="1" />
+    <End Type="Zoo_Sanin_PolupanModel.Staff" Role="Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
